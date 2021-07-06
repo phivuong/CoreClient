@@ -18,12 +18,7 @@ namespace KTHub.Core.Client
 
         public HttpApiClient(ApiConfigs apiConfigs) => this._apiConfigs = apiConfigs;
 
-        public async Task<ResponseModel> ExcuteAsync<T>(
-          string urlSend,
-          HttpApiMethod method,
-          T data,
-          string appId,
-          string publicKey)
+        public async Task<ResponseModel> ExcuteAsync<T>(string urlSend, HttpApiMethod method, T data, string appId, string publicKey)
         {
             try
             {
@@ -54,10 +49,7 @@ namespace KTHub.Core.Client
             }
         }
 
-        private async Task<ResponseModel> ExcuteAsync(
-          string urlSend,
-          RequestModel reqObj,
-          HttpApiMethod method)
+        private async Task<ResponseModel> ExcuteAsync(string urlSend, RequestModel reqObj, HttpApiMethod method)
         {
             try
             {

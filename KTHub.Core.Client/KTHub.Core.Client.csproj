@@ -14,4 +14,15 @@
     <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.2.0" />
     <PackageReference Include="Wire" Version="1.0.0" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="KTHub.Core.Helper">
+      <HintPath>..\packages\KTHub.Core.Helper.dll</HintPath>
+    </Reference>
+    <Reference Include="KTHub.Core.Logging">
+      <HintPath>..\packages\KTHub.Core.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="KTHub.Core.Security">
+      <HintPath>..\packages\KTHub.Core.Security.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>

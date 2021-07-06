@@ -14,38 +14,35 @@ namespace KTHub.Core.Client
 
         protected ApiConfigs ApiConfigs { get; set; }
 
-        protected string ApiResponseMessage { get; set; }
+        protected string ApiResponseMessage { get; set; } // ??
 
-        protected HttpStatusCode ApiResponseStatus { get; set; }
+        protected HttpStatusCode ApiResponseStatus { get; set; } // ??
 
-        protected bool IsExcuteError => this.ApiResponseStatus != HttpStatusCode.OK;
+        protected bool IsExcuteError => this.ApiResponseStatus != HttpStatusCode.OK; // ??
 
+        //Xong
         protected string GetUrlSend(string controllerUri)
         {
-            if (this.ApiConfigs.IsNull())
+            if (this.ApiConfigs.IsNull()) {
                 throw new Exception("ApiConfigs is not null");
+            }
             return this.ApiConfigs.AppHostUri.CombineUriToString(controllerUri);
         }
 
+        //Xong
         public BaseApiClient(ApiConfigs apiConfigs)
         {
             this.ApiConfigs = !apiConfigs.IsNull() ? apiConfigs : throw new Exception("ApiConfigs is not null");
             this.httpClient = (IHttpApiClient)new HttpApiClient(apiConfigs);
         }
 
-        protected virtual async Task<ApiResponse<TResponse>> GetAsync<TResponse, TRequest>(
-          string urlSend,
-          TRequest model,
-          ApiResponse<TResponse> responseData = null)
+        protected virtual async Task<ApiResponse<TResponse>> GetAsync<TResponse, TRequest>(string urlSend, TRequest model, ApiResponse<TResponse> responseData = null)
         {
             ApiResponse<TResponse> apiResponse = await this.SendAsync<TResponse, TRequest>(urlSend, HttpApiMethod.GET, model, responseData);
             return apiResponse;
         }
 
-        protected virtual async Task<ApiResponse<TResponse>> PostAsync<TResponse, TRequest>(
-          string urlSend,
-          TRequest model,
-          ApiResponse<TResponse> responseData = null)
+        protected virtual async Task<ApiResponse<TResponse>> PostAsync<TResponse, TRequest>(string urlSend, TRequest model, ApiResponse<TResponse> responseData = null)
         {
             ApiResponse<TResponse> apiResponse = await this.SendAsync<TResponse, TRequest>(urlSend, HttpApiMethod.POST, model, responseData);
             return apiResponse;

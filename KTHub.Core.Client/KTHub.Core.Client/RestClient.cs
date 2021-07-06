@@ -12,12 +12,7 @@ namespace KTHub.Core.Client
         private readonly HttpClient _client;
         private readonly HashSet<Uri> _endpoints;
 
-        public RestClient(
-          IDictionary<string, string> defaultRequestHeaders = null,
-          HttpMessageHandler handler = null,
-          bool disposeHandler = true,
-          TimeSpan? timeout = null,
-          ulong? maxResponseContentBufferSize = null)
+        public RestClient(IDictionary<string, string> defaultRequestHeaders = null, HttpMessageHandler handler = null, bool disposeHandler = true, TimeSpan? timeout = null, ulong? maxResponseContentBufferSize = null)
         {
             this._client = handler == null ? new HttpClient() : new HttpClient(handler, disposeHandler);
             this.AddDefaultHeaders(defaultRequestHeaders);
