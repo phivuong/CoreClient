@@ -6,11 +6,6 @@ namespace KTHub.Core.Client
 {
     public interface IHttpApiClient
     {
-        Task<ResponseModel> ExcuteAsync<T>(
-          string urlSend,
-          HttpApiMethod method,
-          T data,
-          string appId,
-          string publicKey);
+        Task<ResponseModel> ExcuteAsync<T>(string urlSend, HttpApiMethod method, T data, string appId, string publicKey);
     }
 }

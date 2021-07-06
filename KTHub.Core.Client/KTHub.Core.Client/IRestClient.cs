@@ -18,57 +18,31 @@ namespace KTHub.Core.Client
 
         Task<HttpResponseMessage> GetAsync(Uri requestUri);
 
-        Task<HttpResponseMessage> GetAsync(
-          Uri requestUri,
-          CancellationToken cToken);
+        Task<HttpResponseMessage> GetAsync(Uri requestUri, CancellationToken cToken);
 
-        Task<HttpResponseMessage> GetAsync(
-          Uri requestUri,
-          HttpCompletionOption option);
+        Task<HttpResponseMessage> GetAsync(Uri requestUri, HttpCompletionOption option);
 
-        Task<HttpResponseMessage> GetAsync(
-          Uri requestUri,
-          HttpCompletionOption option,
-          CancellationToken cToken);
+        Task<HttpResponseMessage> GetAsync(Uri requestUri,HttpCompletionOption option, CancellationToken cToken);
 
-        Task<HttpResponseMessage> PostAsync(
-          Uri requestUri,
-          HttpContent httpContent);
+        Task<HttpResponseMessage> PostAsync(Uri requestUri, HttpContent httpContent);
 
-        Task<HttpResponseMessage> PostAsync(
-          Uri requestUri,
-          HttpContent httpContent,
-          CancellationToken cToken);
+        Task<HttpResponseMessage> PostAsync(Uri requestUri, HttpContent httpContent, CancellationToken cToken);
 
-        Task<HttpResponseMessage> PutAsync(
-          Uri requestUri,
-          HttpContent httpContent);
+        Task<HttpResponseMessage> PutAsync(Uri requestUri, HttpContent httpContent);
 
-        Task<HttpResponseMessage> PutAsync(
-          Uri requestUri,
-          HttpContent httpContent,
-          CancellationToken cToken);
+        Task<HttpResponseMessage> PutAsync(Uri requestUri, HttpContent httpContent, CancellationToken cToken);
 
         Task<HttpResponseMessage> DeleteAsync(Uri requestUri);
 
-        Task<HttpResponseMessage> DeleteAsync(
-          Uri requestUri,
-          CancellationToken cToken);
+        Task<HttpResponseMessage> DeleteAsync(Uri requestUri, CancellationToken cToken);
 
         Task<HttpResponseMessage> SendAsync(HttpRequestMessage message);
 
-        Task<HttpResponseMessage> SendAsync(
-          HttpRequestMessage message,
-          CancellationToken cToken);
+        Task<HttpResponseMessage> SendAsync(HttpRequestMessage message, CancellationToken cToken);
 
-        Task<HttpResponseMessage> SendAsync(
-          HttpRequestMessage message,
-          HttpCompletionOption option);
+        Task<HttpResponseMessage> SendAsync(HttpRequestMessage message, HttpCompletionOption option);
 
-        Task<HttpResponseMessage> SendAsync(
-          HttpRequestMessage message,
-          HttpCompletionOption option,
-          CancellationToken cToken);
+        Task<HttpResponseMessage> SendAsync(HttpRequestMessage message, HttpCompletionOption option, CancellationToken cToken);
 
         void ClearEndpoints();
 

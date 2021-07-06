@@ -1,5 +1,4 @@
-﻿using System;
-namespace KTHub.Core.Client
+﻿namespace KTHub.Core.Client
 {
     public class ApiConfigs
     {

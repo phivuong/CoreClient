@@ -42,60 +42,43 @@ namespace KTHub.Core.Client
             return this._client.GetAsync(requestUri);
         }
 
-        public Task<HttpResponseMessage> GetAsync(
-          Uri requestUri,
-          CancellationToken cToken)
+        public Task<HttpResponseMessage> GetAsync(Uri requestUri, CancellationToken cToken)
         {
             this.AddConnectionLeaseTimeout(requestUri);
             return this._client.GetAsync(requestUri, cToken);
         }
 
-        public Task<HttpResponseMessage> GetAsync(
-          Uri requestUri,
-          HttpCompletionOption option)
+        public Task<HttpResponseMessage> GetAsync(Uri requestUri, HttpCompletionOption option)
         {
             this.AddConnectionLeaseTimeout(requestUri);
             return this._client.GetAsync(requestUri, option);
         }
 
-        public Task<HttpResponseMessage> GetAsync(
-          Uri requestUri,
-          HttpCompletionOption option,
-          CancellationToken cToken)
+        public Task<HttpResponseMessage> GetAsync(Uri requestUri, HttpCompletionOption option, CancellationToken cToken)
         {
             this.AddConnectionLeaseTimeout(requestUri);
             return this._client.GetAsync(requestUri, option, cToken);
         }
 
-        public Task<HttpResponseMessage> PostAsync(
-          Uri requestUri,
-          HttpContent httpContent)
+        public Task<HttpResponseMessage> PostAsync(Uri requestUri, HttpContent httpContent)
         {
             this.AddConnectionLeaseTimeout(requestUri);
             return this._client.PostAsync(requestUri, httpContent);
         }
 
-        public Task<HttpResponseMessage> PostAsync(
-          Uri requestUri,
-          HttpContent httpContent,
-          CancellationToken cToken)
+        public Task<HttpResponseMessage> PostAsync(Uri requestUri, HttpContent httpContent, CancellationToken cToken)
         {
             this.AddConnectionLeaseTimeout(requestUri);
             return this._client.PostAsync(requestUri, httpContent, cToken);
         }
 
-        public Task<HttpResponseMessage> PutAsync(
-          Uri requestUri,
-          HttpContent httpContent)
+        public Task<HttpResponseMessage> PutAsync(Uri requestUri, HttpContent httpContent)
         {
             this.AddConnectionLeaseTimeout(requestUri);
             return this._client.PutAsync(requestUri, httpContent);
         }
 
-        public Task<HttpResponseMessage> PutAsync(
-          Uri requestUri,
-          HttpContent httpContent,
-          CancellationToken cToken)
+        public Task<HttpResponseMessage> PutAsync(Uri requestUri, HttpContent httpContent, CancellationToken cToken)
         {
             this.AddConnectionLeaseTimeout(requestUri);
             return this._client.PutAsync(requestUri, httpContent, cToken);
@@ -107,9 +90,7 @@ namespace KTHub.Core.Client
             return this._client.DeleteAsync(requestUri);
         }
 
-        public Task<HttpResponseMessage> DeleteAsync(
-          Uri requestUri,
-          CancellationToken cToken)
+        public Task<HttpResponseMessage> DeleteAsync(Uri requestUri, CancellationToken cToken)
         {
             this.AddConnectionLeaseTimeout(requestUri);
             return this._client.DeleteAsync(requestUri, cToken);
@@ -121,30 +102,24 @@ namespace KTHub.Core.Client
             return this._client.SendAsync(message);
         }
 
-        public Task<HttpResponseMessage> SendAsync(
-          HttpRequestMessage message,
-          CancellationToken cToken)
+        public Task<HttpResponseMessage> SendAsync(HttpRequestMessage message, CancellationToken cToken)
         {
             this.AddConnectionLeaseTimeout(message.RequestUri);
             return this._client.SendAsync(message, cToken);
         }
 
-        public Task<HttpResponseMessage> SendAsync(
-          HttpRequestMessage message,
-          HttpCompletionOption option)
+        public Task<HttpResponseMessage> SendAsync(HttpRequestMessage message, HttpCompletionOption option)
         {
             this.AddConnectionLeaseTimeout(message.RequestUri);
             return this._client.SendAsync(message, option);
         }
 
-        public Task<HttpResponseMessage> SendAsync(
-          HttpRequestMessage message,
-          HttpCompletionOption option,
-          CancellationToken cToken)
+        public Task<HttpResponseMessage> SendAsync(HttpRequestMessage message, HttpCompletionOption option, CancellationToken cToken)
         {
             this.AddConnectionLeaseTimeout(message.RequestUri);
             return this._client.SendAsync(message, option, cToken);
         }
+
         public void ClearEndpoints()
         {
             lock (this._endpoints)

@@ -29,7 +29,9 @@ namespace KTHub.Core.Client
                     {
                         object obj2 = !stringValues.ToString().IsNotNullOrEmpty() || stringValues.Count <= 0 ? (object)null : stringValues.ToString().ParseToObject(property.PropertyType);
                         if (obj2 != null)
+                        {
                             property.SetValue((object)obj1, obj2, (object[])null);
+                        }
                     }
                 }
             }
@@ -64,7 +66,9 @@ namespace KTHub.Core.Client
                         {
                             object obj2 = !stringValues.ToString().IsNotNullOrEmpty() || stringValues.Count <= 0 ? (object)null : stringValues.ToString().ParseToObject(property.PropertyType);
                             if (obj2 != null)
+                            {
                                 property.SetValue((object)obj1, obj2, (object[])null);
+                            }
                         }
                     }
                 }

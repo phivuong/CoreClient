@@ -5,6 +5,11 @@ VisualStudioVersion = 16.0.808.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTHub.Core.Client", "KTHub.Core.Client\KTHub.Core.Client.csproj", "{08D391D5-E309-4A61-91F0-A43EE350E56C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C59A8A77-7822-451A-9D24-A37B205A6F1D}"
+	ProjectSection(SolutionItems) = preProject
+		KTHub.Core.Client.sln = KTHub.Core.Client.sln
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -21,7 +21,9 @@ namespace KTHub.Core.Client
         public static bool IsGenericList(this Type type)
         {
             if (!type.GetTypeInfo().IsGenericType)
+            {
                 return false;
+            }
             Type genericTypeDefinition = type.GetGenericTypeDefinition();
             return genericTypeDefinition == typeof(List<>) || genericTypeDefinition == typeof(IList<>);
         }
@@ -39,10 +41,10 @@ namespace KTHub.Core.Client
                 inputStream.TryGetBuffer(out buffer);
                 return buffer.Array;
             }
-            catch (Exception ex)
+            catch
             {
+                return (byte[])null;
             }
-            return (byte[])null;
         }
     }
 }

@@ -17,7 +17,9 @@ namespace KTHub.Core.Client.Serializer
         public static byte[] Serialize<T>(T obj)
         {
             if ((object)obj == null)
+            {
                 return (byte[])null;
+            }
             lock (SerializerHelpers.LockSerialize)
             {
                 try
@@ -41,7 +43,9 @@ namespace KTHub.Core.Client.Serializer
         public static T Deserialize<T>(byte[] bytes)
         {
             if (!bytes.IsNotNullOrEmpty())
+            {
                 return default(T);
+            }
             lock (SerializerHelpers.LockDeserialize)
             {
                 try
@@ -62,7 +66,9 @@ namespace KTHub.Core.Client.Serializer
         public static byte[] Serialize<T>(T obj, string saltValue)
         {
             if ((object)obj == null)
+            {
                 return (byte[])null;
+            }
             lock (SerializerHelpers.LockRedisSerialize)
             {
                 try
@@ -81,7 +87,9 @@ namespace KTHub.Core.Client.Serializer
         public static T Deserialize<T>(byte[] byteArray, string saltValue)
         {
             if (!byteArray.IsNotNullOrEmpty())
+            {
                 return default(T);
+            }
             lock (SerializerHelpers.LockRedisDeserialize)
             {
                 try
@@ -101,7 +109,9 @@ namespace KTHub.Core.Client.Serializer
         public static T Deserialize<T>(byte[] byteArray, string saltValue, ref bool status)
         {
             if (!byteArray.IsNotNullOrEmpty())
+            {
                 return default(T);
+            }
             lock (SerializerHelpers.LockRedisDeserialize)
             {
                 try
@@ -124,13 +134,17 @@ namespace KTHub.Core.Client.Serializer
             lock (SerializerHelpers.LockListDeserialize)
             {
                 if (byteDatas == null)
+                {
                     return new List<T>();
+                }
                 Wire.Serializer serializer = new Wire.Serializer();
                 List<T> objList = new List<T>();
                 foreach (byte[] byteData in byteDatas)
                 {
                     using (MemoryStream memoryStream = new MemoryStream(byteData))
+                    {
                         objList.Add(serializer.Deserialize<T>((Stream)memoryStream));
+                    }
                 }
                 return objList;
             }
@@ -139,7 +153,9 @@ namespace KTHub.Core.Client.Serializer
         public static string SerializeToString(object objItem)
         {
             if (objItem == null)
+            {
                 return string.Empty;
+            }
             byte[] numArray = SerializerHelpers.Serialize<object>(objItem);
             return numArray.IsNotNullOrEmpty() ? Convert.ToBase64String(numArray) : string.Empty;
         }
