@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.808.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTHub.Core.Client", "KTHub.Core.Client\KTHub.Core.Client.csproj", "{08D391D5-E309-4A61-91F0-A43EE350E56C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{08D391D5-E309-4A61-91F0-A43EE350E56C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08D391D5-E309-4A61-91F0-A43EE350E56C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08D391D5-E309-4A61-91F0-A43EE350E56C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08D391D5-E309-4A61-91F0-A43EE350E56C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FDF6EB80-3CDA-45CF-B964-A1AE19E975A9}
+	EndGlobalSection
+EndGlobal

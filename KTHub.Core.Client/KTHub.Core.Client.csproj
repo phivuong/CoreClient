@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="KTHub.Core.Security">
+      <HintPath>..\..\KTHub.Core.Security\KTHub.Core.Security\bin\Debug\netcoreapp3.1\KTHub.Core.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="KTHub.Core.Logging">
+      <HintPath>..\..\KTHub.Core.Logging\KTHub.Core.Logging\bin\Debug\net5.0\KTHub.Core.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="KTHub.Core.Helper">
+      <HintPath>..\..\KTHub.Core.Helper\KTHub.Core.Helper\bin\Debug\net5.0\KTHub.Core.Helper.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="KTHub.Core.Client.Serializer\" />
+    <Folder Include="KTHub.Core.Client.Models\" />
+    <Folder Include="KTHub.Core.Client\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.2.0" />
+    <PackageReference Include="Wire" Version="1.0.0" />
+  </ItemGroup>
+</Project>
