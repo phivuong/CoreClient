@@ -16,13 +16,13 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="KTHub.Core.Helper">
-      <HintPath>..\packages\KTHub.Core.Helper.dll</HintPath>
+      <HintPath>..\DLLpackages\KTHub.Core.Helper.dll</HintPath>
     </Reference>
     <Reference Include="KTHub.Core.Logging">
-      <HintPath>..\packages\KTHub.Core.Logging.dll</HintPath>
+      <HintPath>..\DLLpackages\KTHub.Core.Logging.dll</HintPath>
     </Reference>
     <Reference Include="KTHub.Core.Security">
-      <HintPath>..\packages\KTHub.Core.Security.dll</HintPath>
+      <HintPath>..\DLLpackages\KTHub.Core.Security.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>
