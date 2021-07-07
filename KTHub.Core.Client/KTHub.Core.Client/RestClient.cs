@@ -14,11 +14,11 @@ namespace KTHub.Core.Client
 
         public RestClient(IDictionary<string, string> defaultRequestHeaders = null, HttpMessageHandler handler = null, bool disposeHandler = true, TimeSpan? timeout = null, ulong? maxResponseContentBufferSize = null)
         {
-            this._client = handler == null ? new HttpClient() : new HttpClient(handler, disposeHandler);
-            this.AddDefaultHeaders(defaultRequestHeaders);
-            this.AddRequestTimeout(timeout);
-            this.AddMaxResponseBufferSize(maxResponseContentBufferSize);
-            this._endpoints = new HashSet<Uri>();
+            _client = handler == null ? new HttpClient() : new HttpClient(handler, disposeHandler);
+            AddDefaultHeaders(defaultRequestHeaders);
+            AddRequestTimeout(timeout);
+            AddMaxResponseBufferSize(maxResponseContentBufferSize);
+            _endpoints = new HashSet<Uri>();
         }
 
         public IDictionary<string, string> DefaultRequestHeaders => (IDictionary<string, string>)this._client.DefaultRequestHeaders.ToDictionary<KeyValuePair<string, IEnumerable<string>>, string, string>((Func<KeyValuePair<string, IEnumerable<string>>, string>)(x => x.Key), (Func<KeyValuePair<string, IEnumerable<string>>, string>)(x => x.Value.First<string>()));
@@ -36,6 +36,7 @@ namespace KTHub.Core.Client
             }
         }
 
+        #region GET
         public Task<HttpResponseMessage> GetAsync(Uri requestUri)
         {
             this.AddConnectionLeaseTimeout(requestUri);
@@ -59,7 +60,9 @@ namespace KTHub.Core.Client
             this.AddConnectionLeaseTimeout(requestUri);
             return this._client.GetAsync(requestUri, option, cToken);
         }
+        #endregion
 
+        #region POST
         public Task<HttpResponseMessage> PostAsync(Uri requestUri, HttpContent httpContent)
         {
             this.AddConnectionLeaseTimeout(requestUri);
@@ -71,7 +74,9 @@ namespace KTHub.Core.Client
             this.AddConnectionLeaseTimeout(requestUri);
             return this._client.PostAsync(requestUri, httpContent, cToken);
         }
+        #endregion
 
+        #region PUT
         public Task<HttpResponseMessage> PutAsync(Uri requestUri, HttpContent httpContent)
         {
             this.AddConnectionLeaseTimeout(requestUri);
@@ -83,7 +88,9 @@ namespace KTHub.Core.Client
             this.AddConnectionLeaseTimeout(requestUri);
             return this._client.PutAsync(requestUri, httpContent, cToken);
         }
+        #endregion
 
+        #region DELETE
         public Task<HttpResponseMessage> DeleteAsync(Uri requestUri)
         {
             this.AddConnectionLeaseTimeout(requestUri);
@@ -95,7 +102,9 @@ namespace KTHub.Core.Client
             this.AddConnectionLeaseTimeout(requestUri);
             return this._client.DeleteAsync(requestUri, cToken);
         }
+        #endregion
 
+        #region SendAsync
         public Task<HttpResponseMessage> SendAsync(HttpRequestMessage message)
         {
             this.AddConnectionLeaseTimeout(message.RequestUri);
@@ -119,7 +128,9 @@ namespace KTHub.Core.Client
             this.AddConnectionLeaseTimeout(message.RequestUri);
             return this._client.SendAsync(message, option, cToken);
         }
+        #endregion
 
+        #region Function
         public void ClearEndpoints()
         {
             lock (this._endpoints)
@@ -131,8 +142,7 @@ namespace KTHub.Core.Client
         public void Dispose()
         {
             this._client.Dispose();
-            lock (this._endpoints)
-                this._endpoints.Clear();
+            ClearEndpoints();
         }
 
         private void AddDefaultHeaders(IDictionary<string, string> headers)
@@ -166,5 +176,6 @@ namespace KTHub.Core.Client
                 this._endpoints.Add(endpoint);
             }
         }
+        #endregion
     }
 }

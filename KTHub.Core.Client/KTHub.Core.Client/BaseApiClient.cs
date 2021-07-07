@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using KTHub.Core.Client.Models;
 using KTHub.Core.Client.Serializer;
 using KTHub.Core.Helper;
-//using KTHub.Core.Logging;
 
 namespace KTHub.Core.Client
 {
@@ -14,13 +13,12 @@ namespace KTHub.Core.Client
 
         protected ApiConfigs ApiConfigs { get; set; }
 
-        protected string ApiResponseMessage { get; set; } // ??
+        protected string ApiResponseMessage { get; set; }
 
-        protected HttpStatusCode ApiResponseStatus { get; set; } // ??
+        protected HttpStatusCode ApiResponseStatus { get; set; }
 
-        protected bool IsExcuteError => this.ApiResponseStatus != HttpStatusCode.OK; // ??
+        protected bool IsExcuteError => this.ApiResponseStatus != HttpStatusCode.OK;
 
-        //Xong
         protected string GetUrlSend(string controllerUri)
         {
             if (this.ApiConfigs.IsNull()) {
@@ -29,13 +27,15 @@ namespace KTHub.Core.Client
             return this.ApiConfigs.AppHostUri.CombineUriToString(controllerUri);
         }
 
-        //Xong
+        #region ctor
         public BaseApiClient(ApiConfigs apiConfigs)
         {
-            this.ApiConfigs = !apiConfigs.IsNull() ? apiConfigs : throw new Exception("ApiConfigs is not null");
-            this.httpClient = (IHttpApiClient)new HttpApiClient(apiConfigs);
+            ApiConfigs = !apiConfigs.IsNull() ? apiConfigs : throw new Exception("ApiConfigs is not null");
+            httpClient = new HttpApiClient(apiConfigs);
         }
+        #endregion
 
+        #region Async Function
         protected virtual async Task<ApiResponse<TResponse>> GetAsync<TResponse, TRequest>(string urlSend, TRequest model, ApiResponse<TResponse> responseData = null)
         {
             ApiResponse<TResponse> apiResponse = await this.SendAsync<TResponse, TRequest>(urlSend, HttpApiMethod.GET, model, responseData);
@@ -59,19 +59,20 @@ namespace KTHub.Core.Client
             ApiResponse<TResponse> apiResponse = await this.SendAsync<TResponse, TRequest>(urlSend, HttpApiMethod.DELETE, model, responseData);
             return apiResponse;
         }
+        #endregion
 
-        private async Task<ApiResponse<TResponse>> SendAsync<TResponse, TRequest>(string urlSend, HttpApiMethod method, TRequest model, ApiResponse<TResponse> responseData = null)
+        private async Task<ApiResponse<TResponse>> SendAsync<TResponse, TRequest>(string urlSend, HttpApiMethod method, TRequest model, ApiResponse<TResponse> responseData)
         {
-            ApiResponse<TResponse> apiResponse;
+            //ApiResponse<TResponse> apiResponse;
             try
             {
-                this.ApiResponseMessage = string.Empty;
-                this.ApiResponseStatus = HttpStatusCode.InternalServerError;
+                ApiResponseMessage = string.Empty;
+                ApiResponseStatus = HttpStatusCode.InternalServerError;
                 ResponseModel respond = await this.httpClient.ExcuteAsync<TRequest>(urlSend, method, model, this.ApiConfigs.AppId, this.ApiConfigs.AppPublicKey);
                 if (respond != null)
                 {
-                    this.ApiResponseMessage = respond.ResponseMessage;
-                    this.ApiResponseStatus = respond.ResponseStatus;
+                    ApiResponseMessage = respond.ResponseMessage;
+                    ApiResponseStatus = respond.ResponseStatus;
                     if (respond.ResponseStatus == HttpStatusCode.OK)
                     {
                         responseData = new ApiResponse<TResponse>()
@@ -95,17 +96,17 @@ namespace KTHub.Core.Client
                 }
                 else
                 {
-                    this.ApiResponseMessage = "Unable to connect to Service API";
-                    this.ApiResponseStatus = HttpStatusCode.ServiceUnavailable;
+                    ApiResponseMessage = "Unable to connect to Service API";
+                    ApiResponseStatus = HttpStatusCode.ServiceUnavailable;
                     responseData = new ApiResponse<TResponse>()
                     {
                         Message = "",
-                        Code = (int)this.ApiResponseStatus,
-                        SystemMessage = this.ApiResponseMessage,
+                        Code = (int)ApiResponseStatus,
+                        SystemMessage = ApiResponseMessage,
                         Data = default(TResponse)
                     };
                 }
-                apiResponse = responseData;
+                //apiResponse = responseData;
             }
             //catch (Exception ex)
             //{
@@ -116,9 +117,9 @@ namespace KTHub.Core.Client
             {
                 //string errorSource = string.Format((string)ConstValue.ErrorSourceFormat, (object)this.GetType().Name, (object)MethodExtensions.GetCallerMemberName(nameof(SendAsync)));
                 //throw new KTHubException((ErrorSeverity)4, (ErrorCode)5, errorSource, ex.Message, ex.StackTrace);
-                throw ex;
+                throw new Exception("SendAsync get error with Ex: " + ex + "\nApiResponseStatus: " + ApiResponseStatus + "\nApiResponseMessage: " + ApiResponseMessage);
             }
-            return apiResponse;
+            return responseData;
         }
     }
 }

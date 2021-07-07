@@ -38,6 +38,11 @@ namespace KTHub.Core.Client
             return obj1;
         }
 
+        //System.Net;
+        //Class.toString("aaaa")
+        //public statis string toString(string aaaa)
+        //QueryStringExtensions.QueryToObject
+        //"".QueryToObject()
         public static T QueryToObject<T>(this string strQuery) where T : new()
         {
             if (strQuery.StartsWith("value="))
@@ -49,7 +54,7 @@ namespace KTHub.Core.Client
                 }
                 catch (Exception ex)
                 {
-                    throw ex;
+                    throw new Exception(ex.ToString());
                 }
             }
             else

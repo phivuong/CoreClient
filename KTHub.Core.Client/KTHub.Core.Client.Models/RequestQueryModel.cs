@@ -1,5 +1,4 @@
-﻿using System;
-namespace KTHub.Core.Client.KTHub.Core.Client.Models
+﻿namespace KTHub.Core.Client.Models
 {
     public class RequestQueryModel
     {
