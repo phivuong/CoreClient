@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using KTHub.Core.Logging;
+//using KTHub.Core.Logging;
 using KTHub.Core.Security;
 
 namespace KTHub.Core.Client.Serializer
@@ -34,7 +34,8 @@ namespace KTHub.Core.Client.Serializer
                 }
                 catch (Exception ex)
                 {
-                    InvokeLogging.WriteLog(ex);
+                    throw new Exception(ex + "");
+                    //InvokeLogging.WriteLog(ex);
                     return (byte[])null;
                 }
             }
@@ -57,7 +58,8 @@ namespace KTHub.Core.Client.Serializer
                 }
                 catch (Exception ex)
                 {
-                    InvokeLogging.WriteLog(ex);
+                    throw new Exception(ex + "");
+                    //InvokeLogging.WriteLog(ex);
                     return default(T);
                 }
             }
@@ -78,7 +80,8 @@ namespace KTHub.Core.Client.Serializer
                 }
                 catch (Exception ex)
                 {
-                    InvokeLogging.WriteLog(ex);
+                    throw new Exception(ex + "");
+                    //InvokeLogging.WriteLog(ex);
                     return (byte[])null;
                 }
             }
@@ -100,7 +103,8 @@ namespace KTHub.Core.Client.Serializer
                 }
                 catch (Exception ex)
                 {
-                    InvokeLogging.WriteLog(ex);
+                    throw new Exception(ex + "");
+                    //InvokeLogging.WriteLog(ex);
                     return default(T);
                 }
             }
@@ -123,7 +127,8 @@ namespace KTHub.Core.Client.Serializer
                 }
                 catch (Exception ex)
                 {
-                    InvokeLogging.WriteLog(ex);
+                    throw new Exception(ex + "");
+                    //InvokeLogging.WriteLog(ex);
                     return default(T);
                 }
             }

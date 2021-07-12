@@ -39,26 +39,59 @@ namespace KTHub.Core.Client
         #region GET
         public Task<HttpResponseMessage> GetAsync(Uri requestUri)
         {
-            this.AddConnectionLeaseTimeout(requestUri);
-            return this._client.GetAsync(requestUri);
+            try
+            {
+                this.AddConnectionLeaseTimeout(requestUri);
+                return this._client.GetAsync(requestUri);
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("exception Rest:___  " + ex);
+            }
+           
         }
 
         public Task<HttpResponseMessage> GetAsync(Uri requestUri, CancellationToken cToken)
         {
-            this.AddConnectionLeaseTimeout(requestUri);
-            return this._client.GetAsync(requestUri, cToken);
+            try
+            {
+                this.AddConnectionLeaseTimeout(requestUri);
+                return this._client.GetAsync(requestUri, cToken);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("exception Rest:___  " + ex);
+            }
+         
         }
 
         public Task<HttpResponseMessage> GetAsync(Uri requestUri, HttpCompletionOption option)
         {
-            this.AddConnectionLeaseTimeout(requestUri);
-            return this._client.GetAsync(requestUri, option);
+            try
+            {
+                this.AddConnectionLeaseTimeout(requestUri);
+                return this._client.GetAsync(requestUri, option);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("exception Rest:___  " + ex);
+            }
+           
         }
 
         public Task<HttpResponseMessage> GetAsync(Uri requestUri, HttpCompletionOption option, CancellationToken cToken)
         {
-            this.AddConnectionLeaseTimeout(requestUri);
-            return this._client.GetAsync(requestUri, option, cToken);
+              try
+            {
+                this.AddConnectionLeaseTimeout(requestUri);
+                return this._client.GetAsync(requestUri, option, cToken);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("exception Rest:___  " + ex);
+            }
+         
         }
         #endregion
 

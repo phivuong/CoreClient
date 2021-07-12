@@ -12,14 +12,14 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
     <PackageReference Include="Wire" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="KTHub.Core.Helper">
       <HintPath>..\DLLpackages\KTHub.Core.Helper.dll</HintPath>
-    </Reference>
-    <Reference Include="KTHub.Core.Logging">
-      <HintPath>..\DLLpackages\KTHub.Core.Logging.dll</HintPath>
     </Reference>
     <Reference Include="KTHub.Core.Security">
       <HintPath>..\DLLpackages\KTHub.Core.Security.dll</HintPath>
