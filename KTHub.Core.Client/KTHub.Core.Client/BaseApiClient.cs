@@ -61,9 +61,10 @@ namespace KTHub.Core.Client
         }
         #endregion
 
-        private async Task<ApiResponse<TResponse>> SendAsync<TResponse, TRequest>(string urlSend, HttpApiMethod method, TRequest model, ApiResponse<TResponse> responseData)
+
+        private async Task<ApiResponse<TResponse>> SendAsync<TResponse, TRequest>(string urlSend, HttpApiMethod method, TRequest model, ApiResponse<TResponse> responseData = null)
         {
-            //ApiResponse<TResponse> apiResponse;
+            ApiResponse<TResponse> apiResponse;
             try
             {
                 ApiResponseMessage = string.Empty;
@@ -106,7 +107,7 @@ namespace KTHub.Core.Client
                         Data = default(TResponse)
                     };
                 }
-                //apiResponse = responseData;
+                apiResponse = responseData;
             }
             //catch (Exception ex)
             //{
@@ -119,7 +120,7 @@ namespace KTHub.Core.Client
                 //throw new KTHubException((ErrorSeverity)4, (ErrorCode)5, errorSource, ex.Message, ex.StackTrace);
                 throw new Exception("SendAsync get error with Ex: " + ex + "\nApiResponseStatus: " + ApiResponseStatus + "\nApiResponseMessage: " + ApiResponseMessage);
             }
-            return responseData;
+            return apiResponse;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Reflection;
 using System.Threading.Tasks;
 using KTHub.Core.Client.Models;
@@ -78,10 +79,13 @@ namespace KTHub.Core.Client
                     case HttpApiMethod.PUT:
                         byte[] byteData = SerializerHelpers.Serialize<RequestModel>(reqObj, (string)null);
                         ByteArrayContent byteContent = new ByteArrayContent(byteData);
+                        byteContent.Headers.Remove("Content-Type");
+                        byteContent.Headers.Add("Content-Type", "application/octet-stream");
+          
                         if (method.Equals((object)HttpApiMethod.POST))
-                            response = await HttpApiClient.restClient.PostAsync(new Uri(urlSend), (HttpContent)byteContent);
+                            response = await HttpApiClient.restClient.PostAsync(new Uri(urlSend), byteContent);
                         else
-                            response = await HttpApiClient.restClient.PutAsync(new Uri(urlSend), (HttpContent)byteContent);
+                            response = await HttpApiClient.restClient.PutAsync(new Uri(urlSend), byteContent);
                         byteData = (byte[])null;
                         byteContent = (ByteArrayContent)null;
                         break;

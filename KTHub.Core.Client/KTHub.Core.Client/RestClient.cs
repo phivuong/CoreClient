@@ -14,11 +14,11 @@ namespace KTHub.Core.Client
 
         public RestClient(IDictionary<string, string> defaultRequestHeaders = null, HttpMessageHandler handler = null, bool disposeHandler = true, TimeSpan? timeout = null, ulong? maxResponseContentBufferSize = null)
         {
-            _client = handler == null ? new HttpClient() : new HttpClient(handler, disposeHandler);
-            AddDefaultHeaders(defaultRequestHeaders);
-            AddRequestTimeout(timeout);
-            AddMaxResponseBufferSize(maxResponseContentBufferSize);
-            _endpoints = new HashSet<Uri>();
+            this._client = handler == null ? new HttpClient() : new HttpClient(handler, disposeHandler);
+            this.AddDefaultHeaders(defaultRequestHeaders);
+            this.AddRequestTimeout(timeout);
+            this.AddMaxResponseBufferSize(maxResponseContentBufferSize);
+            this._endpoints = new HashSet<Uri>();
         }
 
         public IDictionary<string, string> DefaultRequestHeaders => (IDictionary<string, string>)this._client.DefaultRequestHeaders.ToDictionary<KeyValuePair<string, IEnumerable<string>>, string, string>((Func<KeyValuePair<string, IEnumerable<string>>, string>)(x => x.Key), (Func<KeyValuePair<string, IEnumerable<string>>, string>)(x => x.Value.First<string>()));
@@ -49,7 +49,7 @@ namespace KTHub.Core.Client
             {
                 throw new Exception("exception Rest:___  " + ex);
             }
-           
+
         }
 
         public Task<HttpResponseMessage> GetAsync(Uri requestUri, CancellationToken cToken)
@@ -63,7 +63,7 @@ namespace KTHub.Core.Client
             {
                 throw new Exception("exception Rest:___  " + ex);
             }
-         
+
         }
 
         public Task<HttpResponseMessage> GetAsync(Uri requestUri, HttpCompletionOption option)
@@ -77,12 +77,12 @@ namespace KTHub.Core.Client
             {
                 throw new Exception("exception Rest:___  " + ex);
             }
-           
+
         }
 
         public Task<HttpResponseMessage> GetAsync(Uri requestUri, HttpCompletionOption option, CancellationToken cToken)
         {
-              try
+            try
             {
                 this.AddConnectionLeaseTimeout(requestUri);
                 return this._client.GetAsync(requestUri, option, cToken);
@@ -91,7 +91,7 @@ namespace KTHub.Core.Client
             {
                 throw new Exception("exception Rest:___  " + ex);
             }
-         
+
         }
         #endregion
 
@@ -107,6 +107,19 @@ namespace KTHub.Core.Client
             this.AddConnectionLeaseTimeout(requestUri);
             return this._client.PostAsync(requestUri, httpContent, cToken);
         }
+
+        public Task<HttpResponseMessage> PostAsync(Uri requestUri, ByteArrayContent httpContent)
+        {
+            this.AddConnectionLeaseTimeout(requestUri);
+            return this._client.PostAsync(requestUri, httpContent);
+        }
+
+        public Task<HttpResponseMessage> PostAsync(Uri requestUri, ByteArrayContent httpContent, CancellationToken cToken)
+        {
+            this.AddConnectionLeaseTimeout(requestUri);
+            return this._client.PostAsync(requestUri, httpContent, cToken);
+        }
+
         #endregion
 
         #region PUT
@@ -209,6 +222,8 @@ namespace KTHub.Core.Client
                 this._endpoints.Add(endpoint);
             }
         }
+
+      
         #endregion
     }
 }

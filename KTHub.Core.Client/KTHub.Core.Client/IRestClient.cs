@@ -27,6 +27,9 @@ namespace KTHub.Core.Client
         Task<HttpResponseMessage> PostAsync(Uri requestUri, HttpContent httpContent);
 
         Task<HttpResponseMessage> PostAsync(Uri requestUri, HttpContent httpContent, CancellationToken cToken);
+        Task<HttpResponseMessage> PostAsync(Uri requestUri, ByteArrayContent httpContent);
+
+        Task<HttpResponseMessage> PostAsync(Uri requestUri, ByteArrayContent httpContent, CancellationToken cToken);
 
         Task<HttpResponseMessage> PutAsync(Uri requestUri, HttpContent httpContent);
 
